@@ -3,10 +3,7 @@ package com.company;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
@@ -472,6 +469,172 @@ public class GUI extends JFrame {
         levelChoiceGUI.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
 
+    public static void topicsChoiceGUI() {
+        JFrame topicsChoiceGUI = new JFrame();
+
+        //"Choose role plays by:" TextView
+        JLabel chooseRoleplayTextView = new JLabel();
+        chooseRoleplayTextView.setFont(new Font("Comfortaa", Font.PLAIN, 22));
+        chooseRoleplayTextView.setForeground(Color.black);
+        chooseRoleplayTextView.setText("Choose roleplays by:");
+        chooseRoleplayTextView.setHorizontalAlignment(SwingConstants.LEFT);
+        chooseRoleplayTextView.setVerticalAlignment(SwingConstants.CENTER);
+        chooseRoleplayTextView.setBounds(18, 41, 208, 27);
+        topicsChoiceGUI.add(chooseRoleplayTextView);
+
+        //Purple line under "Choose role plays by:"
+        ImageIcon purpleLine = new ImageIcon("src/resources/createProfileLine.png");
+        JLabel chooseRoleplayProfileLine = new JLabel(purpleLine);
+        chooseRoleplayProfileLine.setBounds(0, 76, 253, 3);
+        topicsChoiceGUI.add(chooseRoleplayProfileLine);
+
+        //"Context" Button
+        ImageIcon contextImage = new ImageIcon("src/resources/contextChoiceButton.png");
+        JLabel contextButton = new JLabel(contextImage);
+        contextButton.setFont(new Font("Comfortaa", Font.PLAIN, 16));
+        contextButton.setForeground(Color.white);
+        contextButton.setBounds(30,180,306,107);
+        contextButton.setHorizontalTextPosition(JButton.CENTER);
+        contextButton.setVerticalTextPosition(JButton.CENTER);
+        contextButton.setText("Context");
+        topicsChoiceGUI.add(contextButton);
+
+        contextButton.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                topicsChoiceGUI.dispose();
+                //pass context choice as a parameter
+                //startRolePlayGUI();
+            }
+        });
+
+        //"Language function" Button
+        ImageIcon langFunctionImage = new ImageIcon("src/resources/langChoiceButton.png");
+        JLabel langFuncButton = new JLabel(langFunctionImage);
+        langFuncButton.setFont(new Font("Comfortaa", Font.PLAIN, 16));
+        langFuncButton.setForeground(Color.white);
+        langFuncButton.setBounds(30,310,306,107);
+        langFuncButton.setHorizontalTextPosition(JButton.CENTER);
+        langFuncButton.setVerticalTextPosition(JButton.CENTER);
+        langFuncButton.setText("Language function");
+        topicsChoiceGUI.add(langFuncButton);
+
+        langFuncButton.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                topicsChoiceGUI.dispose();
+                //pass language function choice as a parameter
+                //startRolePlayGUI();
+            }
+        });
+
+        //"Grammar" Button
+        ImageIcon grammarImage = new ImageIcon("src/resources/grammarChoiceButton.png");
+        JLabel grammarButton = new JLabel(grammarImage);
+        grammarButton.setFont(new Font("Comfortaa", Font.PLAIN, 16));
+        grammarButton.setForeground(Color.white);
+        grammarButton.setBounds(30,440,306,107);
+        grammarButton.setHorizontalTextPosition(JButton.CENTER);
+        grammarButton.setVerticalTextPosition(JButton.CENTER);
+        grammarButton.setText("Grammar");
+        topicsChoiceGUI.add(grammarButton);
+
+        grammarButton.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                topicsChoiceGUI.dispose();
+                //pass grammar choice as a parameter
+                //startRolePlayGUI();
+            }
+        });
+
+
+        //initializing GUI
+        topicsChoiceGUI.setSize(375, 667); //Iphone 8
+        topicsChoiceGUI.setLayout(null);
+        topicsChoiceGUI.getContentPane().setBackground(new Color(129,211,248, 80) ); // set background color
+        topicsChoiceGUI.setVisible(true);
+        topicsChoiceGUI.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+    }
+
+    public static void preferencesGUI() {
+        JFrame preferencesGUI = new JFrame();
+
+        String[] languageChoice = {"English", "Russian", "French", "Spanish", "Chinese"};
+        String[] langLevel = {"A1", "A2", "B1", "B2", "C1", "C2"};
+
+        //"My language is.." TextView
+        JLabel langChoiceTextView = new JLabel();
+        langChoiceTextView.setFont(new Font("Comfortaa", Font.PLAIN, 16));
+        langChoiceTextView.setForeground(Color.black);
+        langChoiceTextView.setText("My language is..");
+        langChoiceTextView.setHorizontalAlignment(SwingConstants.LEFT);
+        langChoiceTextView.setVerticalAlignment(SwingConstants.CENTER);
+        langChoiceTextView.setBounds(37, 84, 130, 23);
+        preferencesGUI.add(langChoiceTextView);
+
+        //Language dropbox
+        JComboBox<String> langChoiceBox = new JComboBox<>(languageChoice);
+        langChoiceBox.setBounds(37, 124, 300, 25);
+        langChoiceBox.setFont(new Font("Comfortaa", Font.PLAIN, 13));
+        preferencesGUI.add(langChoiceBox);
+
+        //"I want to practice.." TextView
+        JLabel practiceLangTextView = new JLabel();
+        practiceLangTextView.setFont(new Font("Comfortaa", Font.PLAIN, 16));
+        practiceLangTextView.setForeground(Color.black);
+        practiceLangTextView.setText("I want to practice..");
+        practiceLangTextView.setHorizontalAlignment(SwingConstants.LEFT);
+        practiceLangTextView.setVerticalAlignment(SwingConstants.CENTER);
+        practiceLangTextView.setBounds(37, 199, 160, 23);
+        preferencesGUI.add(practiceLangTextView);
+
+        //Practice Language dropbox
+        JComboBox<String> practiceLangChoiceBox = new JComboBox<>(languageChoice);
+        practiceLangChoiceBox.setBounds(37, 254, 300, 25);
+        practiceLangChoiceBox.setFont(new Font("Comfortaa", Font.PLAIN, 13));
+        preferencesGUI.add(practiceLangChoiceBox);
+
+        //"My level of language.." TextView
+        JLabel langLevelTextView = new JLabel();
+        langLevelTextView.setFont(new Font("Comfortaa", Font.PLAIN, 16));
+        langLevelTextView.setForeground(Color.black);
+        langLevelTextView.setText("My level of language..");
+        langLevelTextView.setHorizontalAlignment(SwingConstants.LEFT);
+        langLevelTextView.setVerticalAlignment(SwingConstants.CENTER);
+        langLevelTextView.setBounds(37, 329, 180, 23);
+        preferencesGUI.add(langLevelTextView);
+
+        //Language dropbox
+        JComboBox<String> langLevelBox = new JComboBox<>(langLevel);
+        langLevelBox.setBounds(37, 384, 300, 25);
+        langLevelBox.setFont(new Font("Comfortaa", Font.PLAIN, 13));
+        preferencesGUI.add(langLevelBox);
+
+        //"Show key vocabulary" checkbox
+        final JLabel keyVocabTextView = new JLabel();
+        keyVocabTextView.setHorizontalAlignment(JLabel.LEFT);
+        keyVocabTextView.setSize(400,100);
+        JCheckBox keyVocabCheckBox = new JCheckBox("Show key vocabulary");
+        keyVocabTextView.setFont(new Font("Comfortaa", Font.PLAIN, 13));
+        keyVocabCheckBox.setOpaque(false);
+        keyVocabCheckBox.setBounds(37,451, 300,18);
+        keyVocabCheckBox.addItemListener(e -> {
+            ///
+        });
+        preferencesGUI.add(keyVocabCheckBox);
+
+        //initializing GUI
+        preferencesGUI.setSize(375, 667); //Iphone 8
+        preferencesGUI.setLayout(null);
+        preferencesGUI.getContentPane().setBackground(new Color(129,211,248, 80) ); // set background color
+        preferencesGUI.setVisible(true);
+        preferencesGUI.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+    }
+
     public static void mainMenuGUI() {
         JFrame mainMenuGUI = new JFrame();
 
@@ -497,7 +660,7 @@ public class GUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 mainMenuGUI.dispose();
-                //practiceGUI();
+                topicsChoiceGUI();
             }
         });
 
@@ -535,7 +698,7 @@ public class GUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 mainMenuGUI.dispose();
-                //preferencesGUI();
+                preferencesGUI();
             }
         });
 
