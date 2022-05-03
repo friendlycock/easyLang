@@ -1,19 +1,17 @@
 package com.company;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
-import java.util.List;
+import static javax.swing.JOptionPane.showMessageDialog;
+
+//Code author - Pavels Kuznecovs w1807574
 
 public class GUI extends JFrame {
 
-    public static String[] quoteArray =
+    public static String[] quoteArray = //array of quotes for the first screen
             {"\"A different language is a different vision of life.\"",
             "\"The limits of my language mean the limits of my world.\"",
             "\"Change your language and you change your thoughts.\"",
@@ -85,11 +83,7 @@ public class GUI extends JFrame {
 
 
         //initializing GUI
-        firstScreen.setSize(375, 667); //Iphone 8
-        firstScreen.setLayout(null);
-        firstScreen.getContentPane().setBackground(new Color(129,211,248, 80) ); // set background color
-        firstScreen.setVisible(true);
-        firstScreen.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        initGUI(firstScreen);
     }
 
     public static void registrationGUI() {
@@ -222,17 +216,25 @@ public class GUI extends JFrame {
         {
             public void mouseClicked(MouseEvent e)
             {
+                if (createUsernameEditText.getText().isBlank() || createPasswordEditText.getText().isBlank() || createEmailEditText.getText().isBlank() ) {
+                    showMessageDialog(null, "Please fill all the fields");
+                }
+                else if (!User.emailIsValid(createEmailEditText.getText())) {
+                showMessageDialog(null, "Please enter valid email");
+            }
+                else if (!User.passwordIsValid(createPasswordEditText.getText())) {
+                    showMessageDialog(null, "Password must have at least one numeric character, uppercase letter, " +
+                            "and its length should be from 8 to 20 characters");
+                }
+            else {
                 registrationGUI.dispose();
                 levelChoiceGUI();
+            }
             }
         });
 
         //initializing GUI
-        registrationGUI.setSize(375, 667); //Iphone 8
-        registrationGUI.setLayout(null);
-        registrationGUI.getContentPane().setBackground(new Color(129,211,248, 80) ); // set background color
-        registrationGUI.setVisible(true);
-        registrationGUI.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        initGUI(registrationGUI);
 
     }
 
@@ -374,17 +376,27 @@ public class GUI extends JFrame {
         {
             public void mouseClicked(MouseEvent e)
             {
-                loginGUI.dispose();
-                mainMenuGUI();
+                if (enterEmailEditText.getText().isBlank() || enterPasswordEditText.getText().isBlank()) {
+                    showMessageDialog(null, "Please fill all the fields");
+                }
+                else if (!User.emailIsValid(enterEmailEditText.getText())) {
+                    showMessageDialog(null, "Please enter valid email");
+
+                }
+                else if (!User.passwordIsValid(enterPasswordEditText.getText())) {
+                    showMessageDialog(null, "Password must have at least one numeric character, uppercase letter, " +
+                            "and its length should be from 8 to 20 characters");
+                }
+                else {
+                    loginGUI.dispose();
+                    mainMenuGUI();
+                }
             }
         });
 
+
         //initializing GUI
-        loginGUI.setSize(375, 667); //Iphone 8
-        loginGUI.setLayout(null);
-        loginGUI.getContentPane().setBackground(new Color(129,211,248, 80) ); // set background color
-        loginGUI.setVisible(true);
-        loginGUI.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        initGUI(loginGUI);
     }
 
     public static void levelChoiceGUI() {
@@ -462,11 +474,7 @@ public class GUI extends JFrame {
         });
 
         //initializing GUI
-        levelChoiceGUI.setSize(375, 667); //Iphone 8
-        levelChoiceGUI.setLayout(null);
-        levelChoiceGUI.getContentPane().setBackground(new Color(129,211,248, 80) ); // set background color
-        levelChoiceGUI.setVisible(true);
-        levelChoiceGUI.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        initGUI(levelChoiceGUI);
     }
 
     public static void topicsChoiceGUI() {
@@ -479,7 +487,7 @@ public class GUI extends JFrame {
         chooseRoleplayTextView.setText("Choose roleplays by:");
         chooseRoleplayTextView.setHorizontalAlignment(SwingConstants.LEFT);
         chooseRoleplayTextView.setVerticalAlignment(SwingConstants.CENTER);
-        chooseRoleplayTextView.setBounds(18, 41, 208, 27);
+        chooseRoleplayTextView.setBounds(18, 41, 258, 27);
         topicsChoiceGUI.add(chooseRoleplayTextView);
 
         //Purple line under "Choose role plays by:"
@@ -504,8 +512,7 @@ public class GUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 topicsChoiceGUI.dispose();
-                //pass context choice as a parameter
-                //startRolePlayGUI();
+                contextTopicsScreen();
             }
         });
 
@@ -525,8 +532,7 @@ public class GUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 topicsChoiceGUI.dispose();
-                //pass language function choice as a parameter
-                //startRolePlayGUI();
+                //langFuncGUI();
             }
         });
 
@@ -546,18 +552,13 @@ public class GUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 topicsChoiceGUI.dispose();
-                //pass grammar choice as a parameter
-                //startRolePlayGUI();
+                //grammarGUI();
             }
         });
 
 
         //initializing GUI
-        topicsChoiceGUI.setSize(375, 667); //Iphone 8
-        topicsChoiceGUI.setLayout(null);
-        topicsChoiceGUI.getContentPane().setBackground(new Color(129,211,248, 80) ); // set background color
-        topicsChoiceGUI.setVisible(true);
-        topicsChoiceGUI.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        initGUI(topicsChoiceGUI);
     }
 
     public static void preferencesGUI() {
@@ -622,17 +623,123 @@ public class GUI extends JFrame {
         keyVocabTextView.setFont(new Font("Comfortaa", Font.PLAIN, 13));
         keyVocabCheckBox.setOpaque(false);
         keyVocabCheckBox.setBounds(37,451, 300,18);
-        keyVocabCheckBox.addItemListener(e -> {
-            ///
-        });
+        keyVocabCheckBox.addItemListener(e -> Main.keyVocab = e.getStateChange() == ItemEvent.SELECTED);
         preferencesGUI.add(keyVocabCheckBox);
 
+        //"Save" Button
+        ImageIcon saveImage = new ImageIcon("src/resources/getStartedButton.png");
+        JLabel saveButton = new JLabel(saveImage);
+        saveButton.setFont(new Font("Comfortaa", Font.PLAIN, 16));
+        saveButton.setForeground(Color.white);
+        saveButton.setBounds(110,534,152,42);
+        saveButton.setHorizontalTextPosition(JButton.CENTER);
+        saveButton.setVerticalTextPosition(JButton.CENTER);
+        saveButton.setText("Save");
+        preferencesGUI.add(saveButton);
+
+        saveButton.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                    //User.setLangLevel, setUserLang, setPracticeLang
+                    preferencesGUI.dispose();
+                    mainMenuGUI();
+            }
+        });
+
         //initializing GUI
-        preferencesGUI.setSize(375, 667); //Iphone 8
-        preferencesGUI.setLayout(null);
-        preferencesGUI.getContentPane().setBackground(new Color(129,211,248, 80) ); // set background color
-        preferencesGUI.setVisible(true);
-        preferencesGUI.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        initGUI(preferencesGUI);
+    }
+
+    public static void contextTopicsScreen() {
+        JFrame contextTopicsScreen = new JFrame();
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        //if (User.getUserLevel == "A1") { getting user language level and setting existing topics
+            //if A1
+            JLabel button = new JLabel("Ordering food and drink");
+            addButton(panel, button);
+            JLabel button1 = new JLabel("Exchanging personal information");
+            addButton(panel, button1);
+            JLabel button2 = new JLabel("Going shopping and asking for prices");
+            addButton(panel, button2);
+            JLabel button3 = new JLabel("Making Appointments");
+            addButton(panel, button3);
+            JLabel button4 = new JLabel("Introductions");
+            addButton(panel, button4);
+            JLabel button5 = new JLabel("Basic employment issues");
+            addButton(panel, button5);
+            JLabel button6 = new JLabel("Going shopping and asking for prices");
+            addButton(panel, button6);
+            JLabel button7 = new JLabel("Socialising in the country");
+            addButton(panel, button7);
+            JLabel button8 = new JLabel("Asking and giving directions");
+            addButton(panel, button8);
+            JLabel button9 = new JLabel("Making invitations");
+            addButton(panel, button9);
+            JLabel button10 = new JLabel("University life");
+            addButton(panel, button10);
+            JLabel button11 = new JLabel("Cross-cultural experiences");
+            addButton(panel, button11);
+            JLabel button12 = new JLabel("Asking and giving directions");
+            addButton(panel, button12);
+            JLabel button13 = new JLabel("Making invitations");
+            addButton(panel, button13);
+            JLabel button14 = new JLabel("University life");
+            addButton(panel, button14);
+        //}
+        panel.setBackground(new Color(30,152,215, 0));
+        panel.setBorder(null);
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setBorder(null);
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(1);
+        scrollPane.getViewport().setScrollMode(JViewport.SIMPLE_SCROLL_MODE);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(25, 117, 314, 460);
+        JPanel contentPane = new JPanel(null);
+        //contentPane.setPreferredSize(new Dimension(500, 400));
+        contentPane.add(scrollPane);
+        contextTopicsScreen.setContentPane(contentPane);
+        contextTopicsScreen.pack();
+
+        //"Choose topic you want to practise" TextView
+        JLabel chooseTopicTextView = new JLabel();
+        chooseTopicTextView.setFont(new Font("Comfortaa", Font.PLAIN, 18));
+        chooseTopicTextView.setForeground(Color.black);
+        chooseTopicTextView.setText("Choose topic you want to practise:");
+        chooseTopicTextView.setHorizontalAlignment(SwingConstants.LEFT);
+        chooseTopicTextView.setVerticalAlignment(SwingConstants.CENTER);
+        chooseTopicTextView.setBounds(18, 41, 310, 27);
+        contextTopicsScreen.add(chooseTopicTextView);
+
+        //Purple line under "Choose topic you want to practise"
+        ImageIcon purpleLine = new ImageIcon("src/resources/purpleLineTopic.png");
+        JLabel chooseTopicLine = new JLabel(purpleLine);
+        chooseTopicLine.setBounds(0, 76, 324, 3);
+        contextTopicsScreen.add(chooseTopicLine);
+
+        //initializing GUI
+        initGUI(contextTopicsScreen);
+    }
+
+    public static void addButton(JPanel panel, JLabel buttonName) {
+        buttonName.setFont(new Font("Comfortaa", Font.PLAIN, 15));
+        buttonName.setBorder(new EmptyBorder(10,0,10,0));//padding: top,left,bottom,right
+        buttonName.setOpaque(false);
+        buttonName.setBackground(new Color(30,152,215, 0));
+        panel.add(buttonName);
+    }
+
+    public static void initGUI(JFrame screen) {
+        //initializing GUI
+        screen.setSize(375, 667); //Iphone 8
+        screen.setLayout(null);
+        screen.getContentPane().setBackground(new Color(129,211,248, 80) ); // set background color
+        screen.setVisible(true);
+        screen.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
 
     public static void mainMenuGUI() {
@@ -721,11 +828,7 @@ public class GUI extends JFrame {
         });
 
         //initializing GUI
-        mainMenuGUI.setSize(375, 667); //Iphone 8
-        mainMenuGUI.setLayout(null);
-        mainMenuGUI.getContentPane().setBackground(new Color(129,211,248, 80) ); // set background color
-        mainMenuGUI.setVisible(true);
-        mainMenuGUI.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        initGUI(mainMenuGUI);
     }
 
 }
