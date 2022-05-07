@@ -7,20 +7,34 @@ public class User {
     private static final String emailRegex = "^(.+)@(.+)$"; //pattern to check if email is valid
     private static final String passwordRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$"; //pattern to check if password is valid
 
-    String username;
-    String email;
-    String password;
-    String userLevel;
-    String userLanguage;
-    String userPracticeLanguage;
+    private int id;
+    private String username;
+    private String email;
+    private String password;
+    private String userLevel;
+    private String userLanguage;
+    private String userPracticeLanguage;
 
-    public User(String username, String email, String password, String userLevel, String userLanguage, String userPracticeLanguage) {
+    public User(int id, String username, String email, String password, String userLevel, String userLanguage, String userPracticeLanguage) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.userLevel = userLevel;
         this.userLanguage = userLanguage;
         this.userPracticeLanguage = userPracticeLanguage;
+    }
+
+    public User() {
+
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -79,12 +93,25 @@ public class User {
         //searching for occurrences of regex
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
-        }
+    }
 
     public static boolean passwordIsValid(String password)
     {
         Pattern pattern = Pattern.compile(passwordRegex);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", userLevel='" + userLevel + '\'' +
+                ", userLanguage='" + userLanguage + '\'' +
+                ", userPracticeLanguage='" + userPracticeLanguage + '\'' +
+                '}';
     }
 }
