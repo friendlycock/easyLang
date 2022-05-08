@@ -108,12 +108,20 @@ public class UserDAO {
     public void insertUpdateUser(User user) {
         try{
             Statement statement = connection.createStatement();
-            String SQL = String.format("INSERT INTO Users VALUES(%d, '%s', '%s', '%s', '%s', '%s', '%s')",
+            String SQL = String.format("INSERT OR REPLACE INTO Users VALUES(%d, '%s', '%s', '%s', '%s', '%s', '%s')",
                     user.getId(), user.getUsername(), user.getEmail(), user.getPassword(),
                     user.getUserLevel(), user.getUserLanguage(), user.getUserPracticeLanguage());
             statement.executeUpdate(SQL);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+    }
+
+    public void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
