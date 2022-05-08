@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import static com.company.GUI.*;
-public class levelChoiceGUI extends JFrame {
+public class LevelChoiceGUI extends JFrame {
 
     public static void startLevelChoice() {
         JFrame levelChoiceGUI = new JFrame();

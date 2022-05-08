@@ -7,7 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import static com.company.GUI.*;
-public class preferencesGUI extends JFrame {
+public class PreferencesGUI extends JFrame {
 
     public static void startPreferences() {
         JFrame preferencesGUI = new JFrame();

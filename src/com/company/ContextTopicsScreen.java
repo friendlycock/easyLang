@@ -5,7 +5,7 @@ import java.awt.*;
 
 import static com.company.GUI.*;
 
-public class contextTopicsScreen extends JFrame {
+public class ContextTopicsScreen extends JFrame {
 
     public static void startContextTopics() {
         JFrame contextTopicsScreen = new JFrame();

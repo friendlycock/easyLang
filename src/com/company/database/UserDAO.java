@@ -61,6 +61,22 @@ public class UserDAO {
         return users;
     }
 
+    public boolean checkUserExistence(String username, String email) { //NEED TO TEST
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = String.format("SELECT * FROM Users WHERE username = '%s'", username);
+            String SQL2 = String.format("SELECT * FROM Users WHERE email = '%s'", email);
+            ResultSet resultSet = statement.executeQuery(SQL);
+            ResultSet resultSet2 = statement.executeQuery(SQL2);
+            if (resultSet != null || resultSet2 != null) {
+                return false;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return true;
+    }
+
 //    public static void main(String[] args) {
 //        UsersDAO dao = new UsersDAO();
 //        User user1 = new User(1, "krampus", "krampus1337@gmail.com", "password123",

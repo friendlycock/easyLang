@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 import static javax.swing.JOptionPane.showMessageDialog;
 import static com.company.GUI.*;
 
-public class registrationGUI extends JFrame {
+public class RegistrationGUI extends JFrame {
 
     public static void startRegistration() {
         JFrame registrationGUI = new JFrame();
@@ -108,7 +108,7 @@ public class registrationGUI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 registrationGUI.dispose();
-                loginGUI.startLogin();
+                LoginGUI.startLogin();
             }
 
             @Override
@@ -152,7 +152,7 @@ public class registrationGUI extends JFrame {
                 }
                 else {
                     registrationGUI.dispose();
-                    levelChoiceGUI.startLevelChoice();
+                    LevelChoiceGUI.startLevelChoice();
                 }
             }
         });

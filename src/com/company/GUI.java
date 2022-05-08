@@ -43,7 +43,7 @@ public class GUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 firstScreen.dispose();
-                loginGUI.startLogin();
+                LoginGUI.startLogin();
             }
         });
 
@@ -63,7 +63,7 @@ public class GUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 firstScreen.dispose();
-                registrationGUI.startRegistration();
+                RegistrationGUI.startRegistration();
             }
         });
 
@@ -128,7 +128,7 @@ public class GUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 mainMenuGUI.dispose();
-                topicsChoiceGUI.startTopicsChoice();
+                TopicsChoiceGUI.startTopicsChoice();
             }
         });
 
@@ -166,7 +166,7 @@ public class GUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 mainMenuGUI.dispose();
-                preferencesGUI.startPreferences();
+                PreferencesGUI.startPreferences();
             }
         });
 

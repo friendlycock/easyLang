@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 import static com.company.GUI.*;
 
-public class topicsChoiceGUI extends JFrame {
+public class TopicsChoiceGUI extends JFrame {
 
     public static void startTopicsChoice() {
         JFrame topicsChoiceGUI = new JFrame();
@@ -44,7 +44,7 @@ public class topicsChoiceGUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 topicsChoiceGUI.dispose();
-                contextTopicsScreen.startContextTopics();
+                ContextTopicsScreen.startContextTopics();
             }
         });
 
