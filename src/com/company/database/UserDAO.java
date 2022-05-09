@@ -85,8 +85,7 @@ public class UserDAO {
                 "A", "English", "German");
         dao.insertUpdateUser(user1);
         dao.insertUpdateUser(user2);
-        List<User> users =  dao.getAllUsers();
-        users.forEach(System.out::println);
+        System.out.println(dao.getUserByEmail("nonexistemail"));
     }
 
     public User getUserByEmail(String email) {

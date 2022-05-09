@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.database.UserDAO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -9,6 +11,8 @@ import static javax.swing.JOptionPane.showMessageDialog;
 import static com.company.GUI.*;
 
 public class RegistrationGUI extends JFrame {
+
+    private UserDAO dao = UserDAO.getInstance();
 
     public static void startRegistration() {
         JFrame registrationGUI = new JFrame();
@@ -140,6 +144,7 @@ public class RegistrationGUI extends JFrame {
         {
             public void mouseClicked(MouseEvent e)
             {
+                User user = UserDAO.getInstance().getUserByEmail(createEmailEditText.getText());
                 if (createUsernameEditText.getText().isBlank() || createPasswordEditText.getText().isBlank() || createEmailEditText.getText().isBlank() ) {
                     showMessageDialog(null, "Please fill all the fields");
                 }
@@ -149,6 +154,8 @@ public class RegistrationGUI extends JFrame {
                 else if (!User.passwordIsValid(createPasswordEditText.getText())) {
                     showMessageDialog(null, "Password must have at least one numeric character, uppercase letter, " +
                             "and its length should be from 8 to 20 characters");
+                } else if (user.getEmail() == null) {
+                    showMessageDialog(null, "Email is already used");
                 }
                 else {
                     registrationGUI.dispose();
@@ -160,5 +167,13 @@ public class RegistrationGUI extends JFrame {
         //initializing GUI
         initGUI(registrationGUI);
 
+    }
+
+    private boolean checkEmailExistence(String email) {
+        User user = dao.getUserByEmail(email);
+        if ( user.getUsername() == null ) {
+            return false;
+        }
+        return true;
     }
 }
