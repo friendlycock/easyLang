@@ -1302,21 +1302,21 @@
       <DataType>VARCHAR(25)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="478" parent="164" name="password">
+    <column id="478" parent="164" name="langugage">
       <Position>4</Position>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="479" parent="164" name="language">
-      <Position>5</Position>
       <DataType>VARCHAR(25)|0s</DataType>
     </column>
-    <column id="480" parent="164" name="level">
-      <Position>6</Position>
+    <column id="479" parent="164" name="level">
+      <Position>5</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="481" parent="164" name="practiseLanguage">
-      <Position>7</Position>
+    <column id="480" parent="164" name="practriseLanguage">
+      <Position>6</Position>
       <DataType>VARCHAR(25)|0s</DataType>
+    </column>
+    <column id="481" parent="164" name="isAdmin">
+      <Position>7</Position>
+      <DataType>BOOLEAN|0s</DataType>
     </column>
     <index id="482" parent="164" name="sqlite_autoindex_Users_1">
       <NameSurrogate>1</NameSurrogate>

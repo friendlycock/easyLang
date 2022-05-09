@@ -184,6 +184,7 @@ public class GUI extends JFrame {
         {
             public void mouseClicked(MouseEvent e)
             {
+                LoggerHelper.log(LoginTracker.getCurrentUser().getUsername() + " logged out");
                 System.exit(1);
             }
         });

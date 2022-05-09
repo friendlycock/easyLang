@@ -93,6 +93,7 @@ public class PreferencesGUI extends JFrame {
             {
                 //User.setLangLevel, setUserLang, setPracticeLang
                 User currentUser = LoginTracker.getCurrentUser();
+                LoggerHelper.log(currentUser.getUsername() + " changed his preferences.");
                 currentUser.setUserPracticeLanguage((String)practiceLangChoiceBox.getSelectedItem());
                 currentUser.setUserLevel((String)langLevelBox.getSelectedItem());
                 currentUser.setUserLanguage((String)langChoiceBox.getSelectedItem());

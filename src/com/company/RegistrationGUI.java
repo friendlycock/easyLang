@@ -164,6 +164,7 @@ public class RegistrationGUI extends JFrame {
                     newUser.setUsername(createUsernameEditText.getText());
                     UserDAO.getInstance().insertUpdateUser(newUser);
                     LoginTracker.setCurrentUser(newUser);
+                    LoggerHelper.log(newUser.getUsername() + " created account.");
 
                     registrationGUI.dispose();
                     LevelChoiceGUI.startLevelChoice();
