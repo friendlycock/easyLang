@@ -140,7 +140,7 @@ public class UserDAO {
         user.setPassword(resultSet.getString("password"));
         user.setUserLevel(resultSet.getString("level"));
         user.setUserLanguage(resultSet.getString("language"));
-        user.setUserPracticeLanguage(resultSet.getString("practiseLanguage"));
+        user.setUserPracticeLanguage(resultSet.getString("practiceLanguage"));
         user.setAdmin(resultSet.getBoolean("isAdmin"));
 
         return user;
