@@ -107,7 +107,7 @@ public class UserDAO {
 
     public void insertUpdateUser(User user) {
         try{
-            String SQL = "INSERT OR REPLACE INTO Users VALUES(?, ?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT OR REPLACE INTO Users VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setInt(1, user.getId());
             statement.setString(2, user.getUsername());
@@ -116,6 +116,7 @@ public class UserDAO {
             statement.setString(5, user.getUserLanguage());
             statement.setString(6, user.getUserLevel());
             statement.setString(7, user.getUserPracticeLanguage());
+            statement.setBoolean(8, user.isAdmin());
             statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -140,6 +141,7 @@ public class UserDAO {
         user.setUserLevel(resultSet.getString("level"));
         user.setUserLanguage(resultSet.getString("language"));
         user.setUserPracticeLanguage(resultSet.getString("practiseLanguage"));
+        user.setAdmin(resultSet.getBoolean("isAdmin"));
 
         return user;
     }
