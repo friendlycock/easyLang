@@ -28,7 +28,8 @@ public class User {
     }
 
     public User() {
-
+        this.id = newId;
+        newId++;
     }
 
     public int getId() {

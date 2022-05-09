@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.database.UserDAO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -77,6 +79,11 @@ public class LevelChoiceGUI extends JFrame {
         {
             public void mouseClicked(MouseEvent e)
             {
+                User user = LoginTracker.getCurrentUser();
+                user.setUserLevel((String)langLevelBox.getSelectedItem());
+                user.setUserLanguage((String)langChoiceBox.getSelectedItem());
+                user.setUserPracticeLanguage((String)practiceLangChoiceBox.getSelectedItem());
+                UserDAO.getInstance().insertUpdateUser(user);
                 levelChoiceGUI.dispose();
                 mainMenuGUI();
             }

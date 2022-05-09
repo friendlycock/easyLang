@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.database.UserDAO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
@@ -90,6 +92,12 @@ public class PreferencesGUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 //User.setLangLevel, setUserLang, setPracticeLang
+                User currentUser = LoginTracker.getCurrentUser();
+                currentUser.setUserPracticeLanguage((String)practiceLangChoiceBox.getSelectedItem());
+                currentUser.setUserLevel((String)langLevelBox.getSelectedItem());
+                currentUser.setUserLanguage((String)langChoiceBox.getSelectedItem());
+                UserDAO.getInstance().insertUpdateUser(currentUser);
+
                 preferencesGUI.dispose();
                 mainMenuGUI();
             }

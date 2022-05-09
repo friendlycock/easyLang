@@ -165,6 +165,7 @@ public class LoginGUI extends JFrame {
                 else {
                     if (user.getPassword() != null && user.getPassword().equals(enterPasswordEditText.getText())) {
                         // successful login
+                        LoginTracker.setCurrentUser(user);
                         loginGUI.dispose();
                         mainMenuGUI();
                     } else {

@@ -154,10 +154,17 @@ public class RegistrationGUI extends JFrame {
                 else if (!User.passwordIsValid(createPasswordEditText.getText())) {
                     showMessageDialog(null, "Password must have at least one numeric character, uppercase letter, " +
                             "and its length should be from 8 to 20 characters");
-                } else if (user.getEmail() == null) {
+                } else if (user.getEmail() != null) {
                     showMessageDialog(null, "Email is already used");
                 }
                 else {
+                    User newUser = new User();
+                    newUser.setEmail(createEmailEditText.getText());
+                    newUser.setPassword(createPasswordEditText.getText());
+                    newUser.setUsername(createUsernameEditText.getText());
+                    UserDAO.getInstance().insertUpdateUser(newUser);
+                    LoginTracker.setCurrentUser(newUser);
+
                     registrationGUI.dispose();
                     LevelChoiceGUI.startLevelChoice();
                 }
