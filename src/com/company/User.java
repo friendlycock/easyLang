@@ -6,8 +6,9 @@ import java.util.regex.Pattern;
 public class User {
     private static final String emailRegex = "^(.+)@(.+)$"; //pattern to check if email is valid
     private static final String passwordRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$"; //pattern to check if password is valid
-    public static int id = 0;
+    private static int newId = 0;
 
+    private int id;
     private String username;
     private String email;
     private String password;
@@ -15,8 +16,9 @@ public class User {
     private String userLanguage;
     private String userPracticeLanguage;
 
-    public User(int id, String username, String email, String password, String userLevel, String userLanguage, String userPracticeLanguage) {
-        this.id = id;
+    public User(String username, String email, String password, String userLevel, String userLanguage, String userPracticeLanguage) {
+        this.id = newId;
+        newId++;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -30,7 +32,7 @@ public class User {
     }
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(int id) {

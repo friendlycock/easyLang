@@ -77,17 +77,17 @@ public class UserDAO {
         return true;
     }
 
-//    public static void main(String[] args) {
-//        UsersDAO dao = new UsersDAO();
-//        User user1 = new User(1, "krampus", "krampus1337@gmail.com", "password123",
-//                "A", "English", "German");
-//        User user2 = new User(2, "krampus1", "krampus1338@gmail.com", "password123",
-//                "A", "English", "German");
-//        dao.insertUpdateUser(user1);
-////        dao.insertUpdateUser(user2);
-////        dao.getAllUsers().forEach(System.out::println);
-////        System.out.println(dao.getUserByEmail("krampus1mail.com"));
-//    }
+    public static void main(String[] args) {
+        UserDAO dao = new UserDAO();
+        User user1 = new User("krampus", "krampus1337@gmail.com", "password123",
+                "A", "English", "German");
+        User user2 = new User("krampus1", "krampus1338@gmail.com", "password123",
+                "A", "English", "German");
+        dao.insertUpdateUser(user1);
+        dao.insertUpdateUser(user2);
+        List<User> users =  dao.getAllUsers();
+        users.forEach(System.out::println);
+    }
 
     public User getUserByEmail(String email) {
         User user = new User();
