@@ -15,6 +15,7 @@ public class User {
     private String userLevel;
     private String userLanguage;
     private String userPracticeLanguage;
+    private boolean isAdmin;
 
     public User(String username, String email, String password, String userLevel, String userLanguage, String userPracticeLanguage) {
         this.id = newId;
@@ -25,6 +26,19 @@ public class User {
         this.userLevel = userLevel;
         this.userLanguage = userLanguage;
         this.userPracticeLanguage = userPracticeLanguage;
+        this.isAdmin = false;
+    }
+
+    public User(String username, String email, String password, String userLevel, String userLanguage, String userPracticeLanguage, boolean isAdmin) {
+        this.id = newId;
+        newId++;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.userLevel = userLevel;
+        this.userLanguage = userLanguage;
+        this.userPracticeLanguage = userPracticeLanguage;
+        this.isAdmin = isAdmin;
     }
 
     public User() {
@@ -86,6 +100,14 @@ public class User {
 
     public void setUserPracticeLanguage(String userPracticeLanguage) {
         this.userPracticeLanguage = userPracticeLanguage;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 
     public static boolean emailIsValid(String email) {

@@ -77,24 +77,25 @@ public class UserDAO {
         return true;
     }
 
-    public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-        User user1 = new User("krampus", "krampus1337@gmail.com", "password123",
-                "A", "English", "German");
-        User user2 = new User("krampus1", "krampus1338@gmail.com", "password123",
-                "A", "English", "German");
-        dao.insertUpdateUser(user1);
-        dao.insertUpdateUser(user2);
-        System.out.println(dao.getUserByEmail("nonexistemail"));
-    }
+//    public static void main(String[] args) {
+//        UserDAO dao = new UserDAO();
+//        User user1 = new User("krampus", "krampus1337@gmail.com", "password123",
+//                "A", "English", "German");
+//        User user2 = new User("krampus1", "krampus1338@gmail.com", "password123",
+//                "A", "English", "German");
+//        dao.insertUpdateUser(user1);
+//        dao.insertUpdateUser(user2);
+//        System.out.println(dao.getUserByEmail("nonexistemail"));
+//    }
 
     public User getUserByEmail(String email) {
         User user = new User();
 
         try {
-            Statement statement = connection.createStatement();
-            String SQL = String.format("SELECT * FROM Users WHERE email = '%s'", email);
-            ResultSet resultSet = statement.executeQuery(SQL);
+            String SQL = "SELECT * FROM Users WHERE email = ?";
+            PreparedStatement statement = connection.prepareStatement(SQL);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
 
             user = getUserFromResultSet(resultSet);
         } catch (SQLException e) {
@@ -106,11 +107,16 @@ public class UserDAO {
 
     public void insertUpdateUser(User user) {
         try{
-            Statement statement = connection.createStatement();
-            String SQL = String.format("INSERT OR REPLACE INTO Users VALUES(%d, '%s', '%s', '%s', '%s', '%s', '%s')",
-                    user.getId(), user.getUsername(), user.getEmail(), user.getPassword(),
-                    user.getUserLevel(), user.getUserLanguage(), user.getUserPracticeLanguage());
-            statement.executeUpdate(SQL);
+            String SQL = "INSERT OR REPLACE INTO Users VALUES(?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(SQL);
+            statement.setInt(1, user.getId());
+            statement.setString(2, user.getUsername());
+            statement.setString(3, user.getEmail());
+            statement.setString(4, user.getPassword());
+            statement.setString(5, user.getUserLanguage());
+            statement.setString(6, user.getUserLevel());
+            statement.setString(7, user.getUserPracticeLanguage());
+            statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
