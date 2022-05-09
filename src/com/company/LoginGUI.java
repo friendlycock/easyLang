@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.database.UserDAO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -32,7 +34,7 @@ public class LoginGUI extends JFrame {
         JLabel enterEmailTextView = new JLabel();
         enterEmailTextView.setFont(new Font("Comfortaa", Font.PLAIN, 14));
         enterEmailTextView.setForeground(Color.black);
-        enterEmailTextView.setText("E-mail or username:");
+        enterEmailTextView.setText("E-mail");
         enterEmailTextView.setHorizontalAlignment(SwingConstants.LEFT);
         enterEmailTextView.setVerticalAlignment(SwingConstants.CENTER);
         enterEmailTextView.setBounds(37, 162, 168, 23);
@@ -147,6 +149,8 @@ public class LoginGUI extends JFrame {
         {
             public void mouseClicked(MouseEvent e)
             {
+                User user = UserDAO.getInstance().getUserByEmail(enterEmailEditText.getText());
+
                 if (enterEmailEditText.getText().isBlank() || enterPasswordEditText.getText().isBlank()) {
                     showMessageDialog(null, "Please fill all the fields");
                 }
@@ -159,8 +163,13 @@ public class LoginGUI extends JFrame {
                             "and its length should be from 8 to 20 characters");
                 }
                 else {
-                    loginGUI.dispose();
-                    mainMenuGUI();
+                    if (user.getPassword() != null && user.getPassword().equals(enterPasswordEditText.getText())) {
+                        // successful login
+                        loginGUI.dispose();
+                        mainMenuGUI();
+                    } else {
+                        showMessageDialog(null, "Wrong email or password. Check your details and try again.");
+                    }
                 }
             }
         });
