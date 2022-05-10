@@ -14,6 +14,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import static com.company.GUI.GUI.*;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class PreferencesGUI extends JFrame {
 
     public static void startPreferences() {
@@ -73,11 +75,11 @@ public class PreferencesGUI extends JFrame {
         //"Show key vocabulary" checkbox
         final JLabel keyVocabTextView = new JLabel();
         keyVocabTextView.setHorizontalAlignment(JLabel.LEFT);
-        keyVocabTextView.setSize(400,100);
+        keyVocabTextView.setSize(400, 100);
         JCheckBox keyVocabCheckBox = new JCheckBox("Show key vocabulary");
         keyVocabTextView.setFont(new Font("Comfortaa", Font.PLAIN, 13));
         keyVocabCheckBox.setOpaque(false);
-        keyVocabCheckBox.setBounds(37,451, 300,18);
+        keyVocabCheckBox.setBounds(37, 451, 300, 18);
         keyVocabCheckBox.addItemListener(e -> Main.keyVocab = e.getStateChange() == ItemEvent.SELECTED);
         preferencesGUI.add(keyVocabCheckBox);
 
@@ -86,22 +88,20 @@ public class PreferencesGUI extends JFrame {
         JLabel saveButton = new JLabel(saveImage);
         saveButton.setFont(new Font("Comfortaa", Font.PLAIN, 16));
         saveButton.setForeground(Color.white);
-        saveButton.setBounds(110,534,152,42);
+        saveButton.setBounds(110, 534, 152, 42);
         saveButton.setHorizontalTextPosition(JButton.CENTER);
         saveButton.setVerticalTextPosition(JButton.CENTER);
         saveButton.setText("Save");
         preferencesGUI.add(saveButton);
 
-        saveButton.addMouseListener(new MouseAdapter()
-        {
-            public void mouseClicked(MouseEvent e)
-            {
+        saveButton.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
                 //User.setLangLevel, setUserLang, setPracticeLang
                 User currentUser = LoginTracker.getCurrentUser();
                 LoggerHelper.log(currentUser.getUsername() + " changed his preferences.");
-                currentUser.setUserPracticeLanguage((String)practiceLangChoiceBox.getSelectedItem());
-                currentUser.setUserLevel((String)langLevelBox.getSelectedItem());
-                currentUser.setUserLanguage((String)langChoiceBox.getSelectedItem());
+                currentUser.setUserPracticeLanguage((String) practiceLangChoiceBox.getSelectedItem());
+                currentUser.setUserLevel((String) langLevelBox.getSelectedItem());
+                currentUser.setUserLanguage((String) langChoiceBox.getSelectedItem());
                 UserDAO.getInstance().insertUpdateUser(currentUser);
 
                 preferencesGUI.dispose();
@@ -109,23 +109,24 @@ public class PreferencesGUI extends JFrame {
             }
         });
 
-        //if (User.isAdmin) {
-        //setting admin logo
-        JLabel panel = new JLabel();
-        panel.setBounds(319, 19, 30, 30);
-        panel.setIcon(new ImageIcon(new ImageIcon("src/resources/adminLogo.png").getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
-        preferencesGUI.add(panel);
 
-        panel.addMouseListener(new MouseAdapter()
-        {
-            public void mouseClicked(MouseEvent e)
-            {
-                preferencesGUI.dispose();
-                AdministratorGUI.startAdministrator();
-            }
-        });
+        if (LoginTracker.getCurrentUser().isAdmin()) {
+            JLabel panel = new JLabel();
+            panel.setBounds(319, 19, 30, 30);
+            panel.setIcon(new ImageIcon(new ImageIcon("src/resources/adminLogo.png").getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+            preferencesGUI.add(panel);
+
+            panel.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent e) {
+                    preferencesGUI.dispose();
+                    showMessageDialog(null, "You will need to authorize again to access Admin Panel.");
+                    LoginGUI.startLogin(true);
+                }
+            });
+        }
 
         //initializing GUI
+
         initGUI(preferencesGUI);
     }
 }

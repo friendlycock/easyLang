@@ -16,7 +16,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 import static com.company.GUI.GUI.*;
 public class LoginGUI extends JFrame {
 
-    public static void startLogin() {
+    public static void startLogin(boolean adminLogin) {
         JFrame loginGUI = new JFrame();
 
         //"Log In" TextView
@@ -175,7 +175,11 @@ public class LoginGUI extends JFrame {
                         LoggerHelper.log(log);
                         ActivityTracker.userLogin();
                         loginGUI.dispose();
-                        mainMenuGUI();
+                        if (!adminLogin) {
+                            mainMenuGUI();
+                        } else {
+                            AdministratorGUI.startAdministrator();
+                        }
                     } else {
                         showMessageDialog(null, "Wrong email or password. Check your details and try again.");
                     }
@@ -187,4 +191,5 @@ public class LoginGUI extends JFrame {
         //initializing GUI
         initGUI(loginGUI);
     }
+
 }

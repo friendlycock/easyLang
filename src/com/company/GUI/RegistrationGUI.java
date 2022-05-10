@@ -117,7 +117,7 @@ public class RegistrationGUI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 registrationGUI.dispose();
-                LoginGUI.startLogin();
+                LoginGUI.startLogin(false);
             }
 
             @Override

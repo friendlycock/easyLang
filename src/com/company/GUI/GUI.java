@@ -50,7 +50,7 @@ public class GUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 firstScreen.dispose();
-                LoginGUI.startLogin();
+                LoginGUI.startLogin(false);
             }
         });
 
@@ -119,6 +119,8 @@ public class GUI extends JFrame {
         panel.setIcon(new ImageIcon(new ImageIcon("src/resources/logo.png").getImage().getScaledInstance(396, 244, Image.SCALE_SMOOTH)));
         mainMenuGUI.add(panel);
 
+
+
         //"Practice" Button
         ImageIcon mainMenuButtonsImage = new ImageIcon("src/resources/mainMenuButtons.png");
         JLabel practiceButton = new JLabel(mainMenuButtonsImage);
@@ -138,6 +140,7 @@ public class GUI extends JFrame {
                 TopicsChoiceGUI.startTopicsChoice();
             }
         });
+
 
         //"Statistics" Button
         JLabel statisticsButton = new JLabel(mainMenuButtonsImage);
@@ -198,7 +201,6 @@ public class GUI extends JFrame {
                 LoginTracker.setCurrentUser(null);
                 UserDAO.getInstance().insertUpdateUser(currentUser);
                 UserDAO.getInstance().closeConnection();
-                System.out.println(currentUser);
                 System.exit(1);
             }
         });
