@@ -2,6 +2,7 @@ package com.company.database;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserDAO {
@@ -105,7 +106,13 @@ public class UserDAO {
 
     public void insertUpdateUser(User user) {
         try{
-            String SQL = "INSERT OR REPLACE INTO Users VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT OR REPLACE INTO Users VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            StringBuilder activities = new StringBuilder();
+            for (String record: user.getUserActivity()) {
+                activities.append(record).append("\n");
+            }
+
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setInt(1, user.getId());
             statement.setString(2, user.getUsername());
@@ -115,7 +122,10 @@ public class UserDAO {
             statement.setString(6, user.getUserLevel());
             statement.setString(7, user.getUserPracticeLanguage());
             statement.setBoolean(8, user.isAdmin());
+            statement.setString(9, activities.toString());
             statement.executeUpdate();
+
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -140,6 +150,10 @@ public class UserDAO {
         user.setUserLanguage(resultSet.getString("language"));
         user.setUserPracticeLanguage(resultSet.getString("practiceLanguage"));
         user.setAdmin(resultSet.getBoolean("isAdmin"));
+
+        String[] activities = resultSet.getString("activity").split("\n");
+        ArrayList<String> activityList = new ArrayList<>(Arrays.asList(activities));
+        user.setUserActivity(activityList);
 
         return user;
     }

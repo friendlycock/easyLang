@@ -2,8 +2,8 @@ package com.company.GUI;
 
 import com.company.Main;
 
-import com.company.database.LoggerHelper;
-import com.company.database.LoginTracker;
+import com.company.logger.LoggerHelper;
+import com.company.logger.LoginTracker;
 import com.company.database.User;
 import com.company.database.UserDAO;
 

@@ -1,4 +1,4 @@
-package com.company.database;
+package com.company.logger;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;

@@ -1,7 +1,8 @@
 package com.company.GUI;
 
-import com.company.database.LoggerHelper;
-import com.company.database.LoginTracker;
+import com.company.logger.ActivityTracker;
+import com.company.logger.LoggerHelper;
+import com.company.logger.LoginTracker;
 import com.company.database.User;
 
 import com.company.database.UserDAO;
@@ -170,7 +171,9 @@ public class LoginGUI extends JFrame {
                     if (user.getPassword() != null && user.getPassword().equals(enterPasswordEditText.getText())) {
                         // successful login
                         LoginTracker.setCurrentUser(user);
-                        LoggerHelper.log(user.getUsername() + " successfully logged in.");
+                        String log = user.getUsername() + " successfully logged in.";
+                        LoggerHelper.log(log);
+                        ActivityTracker.userLogin();
                         loginGUI.dispose();
                         mainMenuGUI();
                     } else {

@@ -1,7 +1,11 @@
 package com.company.GUI;
 
-import com.company.database.LoggerHelper;
-import com.company.database.LoginTracker;
+import com.company.database.User;
+import com.company.database.UserDAO;
+import com.company.logger.ActivityTracker;
+import com.company.logger.LoggerHelper;
+import com.company.logger.LoginTracker;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -187,7 +191,14 @@ public class GUI extends JFrame {
         {
             public void mouseClicked(MouseEvent e)
             {
-                LoggerHelper.log(LoginTracker.getCurrentUser().getUsername() + " logged out");
+                User currentUser = LoginTracker.getCurrentUser();
+                String log = LoginTracker.getCurrentUser().getUsername() + " logged out";
+                LoggerHelper.log(log);
+                ActivityTracker.userLogout();
+                LoginTracker.setCurrentUser(null);
+                UserDAO.getInstance().insertUpdateUser(currentUser);
+                UserDAO.getInstance().closeConnection();
+                System.out.println(currentUser);
                 System.exit(1);
             }
         });

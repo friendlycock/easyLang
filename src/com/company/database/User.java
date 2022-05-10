@@ -1,5 +1,6 @@
 package com.company.database;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,6 +17,7 @@ public class User {
     private String userLanguage;
     private String userPracticeLanguage;
     private boolean isAdmin;
+    private ArrayList<String> userActivity = new ArrayList<>();
 
     public User(String username, String email, String password, String userLevel, String userLanguage, String userPracticeLanguage) {
         this.id = newId;
@@ -110,6 +112,18 @@ public class User {
         isAdmin = admin;
     }
 
+    public ArrayList<String> getUserActivity() {
+        return userActivity;
+    }
+
+    public void setUserActivity(ArrayList<String> userActivity) {
+        this.userActivity = userActivity;
+    }
+
+    public void addActivity(String activity) {
+        userActivity.add(activity);
+    }
+
     public static boolean emailIsValid(String email) {
 
         //initialize the Pattern object
@@ -137,6 +151,8 @@ public class User {
                 ", userLevel='" + userLevel + '\'' +
                 ", userLanguage='" + userLanguage + '\'' +
                 ", userPracticeLanguage='" + userPracticeLanguage + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", userActivity=" + userActivity +
                 '}';
     }
 }
