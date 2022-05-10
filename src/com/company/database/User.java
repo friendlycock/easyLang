@@ -1,4 +1,4 @@
-package com.company;
+package com.company.database;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,4 +1,4 @@
-package com.company;
+package com.company.database;
 
 public class LoginTracker {
     private static User currentUser = null;

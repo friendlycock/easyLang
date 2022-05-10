@@ -6,6 +6,8 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import com.company.GUI.GUI;
+
 public class Main {
 
     public static boolean keyVocab; //checkbox in preferences to show a key vocabulary

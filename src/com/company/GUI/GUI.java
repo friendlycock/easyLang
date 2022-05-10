@@ -1,4 +1,7 @@
-package com.company;
+package com.company.GUI;
+
+import com.company.database.LoggerHelper;
+import com.company.database.LoginTracker;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -147,7 +150,7 @@ public class GUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 mainMenuGUI.dispose();
-                //statisticsGUI();
+                StatisticsGUI.startStatistics();
             }
         });
 

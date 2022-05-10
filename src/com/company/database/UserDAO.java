@@ -1,7 +1,5 @@
 package com.company.database;
 
-import com.company.User;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
