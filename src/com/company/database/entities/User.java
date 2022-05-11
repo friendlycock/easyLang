@@ -1,4 +1,4 @@
-package com.company.database;
+package com.company.database.entities;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

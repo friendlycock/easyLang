@@ -1,5 +1,7 @@
 package com.company.database;
 
+import com.company.database.entities.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,28 +9,9 @@ import java.util.List;
 
 public class UserDAO {
 
-    private static final String urlSQLite = "jdbc:sqlite:easyLang.sqlite";
-
-    private static Connection connection;
+    private static final Connection connection = DatabaseConnection.getConnection();
     private static UserDAO instance = null;
 
-    static {
-        try {
-            Driver driverSQLite = new org.sqlite.JDBC();
-            DriverManager.registerDriver(driverSQLite);
-            System.out.println("Driver for SQLite downloaded.");
-        } catch (Exception e) {
-            System.out.println("Problem with download driver for SQLite: " +
-                    e.getMessage());
-        }
-        try {
-            connection = DriverManager.getConnection(urlSQLite);
-            System.out.println("Connection to SQLite is done.");
-        } catch (Exception e) {
-            System.out.println("Problem with connection to SQLite: " +
-                    e.getMessage());
-        }
-    }
 
     public static UserDAO getInstance() {
         if (instance == null) {
@@ -128,14 +111,6 @@ public class UserDAO {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }
-    }
-
-    public void closeConnection() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

@@ -1,6 +1,6 @@
 package com.company.GUI;
 
-import com.company.database.User;
+import com.company.database.entities.User;
 import com.company.database.UserDAO;
 
 import javax.swing.*;

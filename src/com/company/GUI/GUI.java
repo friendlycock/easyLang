@@ -1,10 +1,10 @@
 package com.company.GUI;
 
-import com.company.database.User;
+import com.company.database.DatabaseConnection;
+import com.company.database.entities.User;
 import com.company.database.UserDAO;
 import com.company.logger.ActivityTracker;
 import com.company.logger.LoginTracker;
-import jdk.swing.interop.SwingInterOpUtils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -140,7 +140,6 @@ public class GUI extends JFrame {
             }
         });
 
-
         //"Statistics" Button
         JLabel statisticsButton = new JLabel(mainMenuButtonsImage);
         statisticsButton.setFont(new Font("Comfortaa", Font.PLAIN, 13));
@@ -197,7 +196,7 @@ public class GUI extends JFrame {
                 ActivityTracker.userLogout();
                 LoginTracker.setCurrentUser(null);
                 UserDAO.getInstance().insertUpdateUser(currentUser);
-                UserDAO.getInstance().closeConnection();
+                DatabaseConnection.closeConnection();
                 System.exit(1);
             }
         });

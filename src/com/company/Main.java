@@ -4,6 +4,7 @@ package com.company;
 
 import com.company.GUI.AdministratorGUI;
 import com.company.GUI.GUI;
+import com.company.GUI.TopicsChoiceGUI;
 
 public class Main {
 
@@ -12,6 +13,7 @@ public class Main {
     public static void main(String[] args) {
         //GUI gui = new GUI();
         //gui.startGUI();
-        AdministratorGUI.startAdministrator();
+//        AdministratorGUI.startAdministrator();
+        TopicsChoiceGUI.startTopicsChoice();
     }
 }
