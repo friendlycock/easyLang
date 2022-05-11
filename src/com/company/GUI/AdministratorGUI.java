@@ -27,9 +27,9 @@ public class AdministratorGUI extends JFrame{
 
         //label to get User info
         JLabel userPanel = new JLabel();
-        userPanel.setBounds(27, 124, 250, 460);
-        userPanel.setOpaque(false);
-        administratorScreen.add(userPanel);
+        JScrollPane scroller = new JScrollPane(userPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroller.setBounds(27, 124, 322, 430);
+        administratorScreen.add(scroller);
 
         ImageIcon backButtonImage = new ImageIcon("src/resources/backButton.png");
         JLabel backButton = new JLabel(backButtonImage);

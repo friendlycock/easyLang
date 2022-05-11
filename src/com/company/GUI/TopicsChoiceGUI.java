@@ -44,11 +44,11 @@ public class TopicsChoiceGUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 topicsChoiceGUI.dispose();
-                ContextTopicsScreenGUI.startContextTopics();
+                ContextTopicsGUI.startContextTopics();
             }
         });
 
-        //"Language function" Button
+        //"Sub-context" Button
         ImageIcon langFunctionImage = new ImageIcon("src/resources/langChoiceButton.png");
         JLabel langFuncButton = new JLabel(langFunctionImage);
         langFuncButton.setFont(new Font("Comfortaa", Font.PLAIN, 16));
@@ -56,7 +56,7 @@ public class TopicsChoiceGUI extends JFrame {
         langFuncButton.setBounds(30,310,306,107);
         langFuncButton.setHorizontalTextPosition(JButton.CENTER);
         langFuncButton.setVerticalTextPosition(JButton.CENTER);
-        langFuncButton.setText("Language function");
+        langFuncButton.setText("Sub-context");
         topicsChoiceGUI.add(langFuncButton);
 
         langFuncButton.addMouseListener(new MouseAdapter()
@@ -64,7 +64,7 @@ public class TopicsChoiceGUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 topicsChoiceGUI.dispose();
-                //langFuncGUI();
+                SubContextTopicsGUI.startSubTopics();
             }
         });
 
@@ -84,7 +84,7 @@ public class TopicsChoiceGUI extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 topicsChoiceGUI.dispose();
-                //grammarGUI();
+                GrammarGUI.startGrammarTopics();
             }
         });
 

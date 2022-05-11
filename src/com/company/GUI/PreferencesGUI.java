@@ -77,7 +77,6 @@ public class PreferencesGUI extends JFrame {
         keyVocabTextView.setSize(400, 100);
         JCheckBox keyVocabCheckBox = new JCheckBox("Show key vocabulary");
         keyVocabTextView.setFont(new Font("Comfortaa", Font.PLAIN, 13));
-        keyVocabCheckBox.setOpaque(false);
         keyVocabCheckBox.setBounds(37, 451, 300, 18);
         keyVocabCheckBox.addItemListener(e -> Main.keyVocab = e.getStateChange() == ItemEvent.SELECTED);
         preferencesGUI.add(keyVocabCheckBox);
@@ -123,7 +122,6 @@ public class PreferencesGUI extends JFrame {
         }
 
         //initializing GUI
-
         initGUI(preferencesGUI);
     }
 }

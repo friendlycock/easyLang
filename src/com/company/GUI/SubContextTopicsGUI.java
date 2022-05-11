@@ -3,12 +3,12 @@ package com.company.GUI;
 import javax.swing.*;
 import java.awt.*;
 
-import static com.company.GUI.GUI.*;
+import static com.company.GUI.GUI.addButton;
+import static com.company.GUI.GUI.initGUI;
 
-public class ContextTopicsScreenGUI extends JFrame {
-
-    public static void startContextTopics() {
-        JFrame contextTopicsScreen = new JFrame();
+public class SubContextTopicsGUI {
+    public static void startSubTopics() {
+        JFrame subContextTopicsScreen = new JFrame();
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         //if (User.getUserLevel == "A1") { getting user language level and setting existing topics
@@ -54,8 +54,8 @@ public class ContextTopicsScreenGUI extends JFrame {
         scrollPane.setBounds(25, 117, 314, 460);
         JPanel contentPane = new JPanel(null);
         contentPane.add(scrollPane);
-        contextTopicsScreen.setContentPane(contentPane);
-        contextTopicsScreen.pack();
+        subContextTopicsScreen.setContentPane(contentPane);
+        subContextTopicsScreen.pack();
 
         //"Choose topic you want to practise" TextView
         JLabel chooseTopicTextView = new JLabel();
@@ -65,15 +65,15 @@ public class ContextTopicsScreenGUI extends JFrame {
         chooseTopicTextView.setHorizontalAlignment(SwingConstants.LEFT);
         chooseTopicTextView.setVerticalAlignment(SwingConstants.CENTER);
         chooseTopicTextView.setBounds(18, 41, 310, 27);
-        contextTopicsScreen.add(chooseTopicTextView);
+        subContextTopicsScreen.add(chooseTopicTextView);
 
         //Purple line under "Choose topic you want to practise"
         ImageIcon purpleLine = new ImageIcon("src/resources/purpleLineTopic.png");
         JLabel chooseTopicLine = new JLabel(purpleLine);
         chooseTopicLine.setBounds(0, 76, 324, 3);
-        contextTopicsScreen.add(chooseTopicLine);
+        subContextTopicsScreen.add(chooseTopicLine);
 
         //initializing GUI
-        initGUI(contextTopicsScreen);
+        initGUI(subContextTopicsScreen);
     }
 }
