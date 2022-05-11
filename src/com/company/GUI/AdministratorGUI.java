@@ -51,8 +51,9 @@ public class AdministratorGUI extends JFrame{
                 User user = dao.getUserByEmail(userSearch.getText());
                 if (user.getUsername() == null) {
                     showMessageDialog(null, "User not found");
+                    userPanel.setText("");
                 } else {
-                    userPanel.setText(user.toString());
+                    userPanel.setText("<html>" + user + "</html>");
                 }
             }
         });

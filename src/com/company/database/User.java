@@ -143,14 +143,18 @@ public class User {
 
     @Override
     public String toString() {
-        return "id=" + id + "\n" +
-                "username= " + username + '\n' +
-                "email=" + email + '\n' +
-                "password= " + password + '\n' +
-                "userLevel= " + userLevel + '\n' +
-                "userLanguage= " + userLanguage + '\n' +
-                "userPracticeLanguage= " + userPracticeLanguage + '\n' +
-                "isAdmin= " + isAdmin + '\n' +
-                "userActivity= " + userActivity;
+        StringBuilder activities = new StringBuilder();
+        for (String activity: userActivity) {
+            activities.append(activity).append("<br>");
+        }
+        return "id=" + id + "<br>" +
+                "username= " + username + "<br>" +
+                "email=" + email + "<br>" +
+                "password= " + password + "<br>" +
+                "userLevel= " + userLevel + "<br>" +
+                "userLanguage= " + userLanguage + "<br>" +
+                "userPracticeLanguage= " + userPracticeLanguage + "<br>" +
+                "isAdmin= " + isAdmin + "<br>" +
+                "userActivity= <br>" + activities.toString();
     }
 }
