@@ -107,7 +107,6 @@ public class PreferencesGUI extends JFrame {
             }
         });
 
-
         if (LoginTracker.getCurrentUser().isAdmin()) {
             JLabel panel = new JLabel();
             panel.setBounds(319, 19, 30, 30);

@@ -2,9 +2,10 @@ package com.company.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import static com.company.GUI.GUI.addButton;
-import static com.company.GUI.GUI.initGUI;
+import static com.company.GUI.GUI.*;
 
 public class AdministratorGUI {
     public static void startAdministrator() {
@@ -23,6 +24,20 @@ public class AdministratorGUI {
         userPanel.setBounds(27, 124, 250, 460);
         userPanel.setOpaque(false);
         administratorScreen.add(userPanel);
+
+        ImageIcon backButtonImage = new ImageIcon("src/resources/backButton.png");
+        JLabel backButton = new JLabel(backButtonImage);
+        backButton.setBounds(15,570,45,45);
+        administratorScreen.add(backButton);
+
+        backButton.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                administratorScreen.dispose();
+                GUI.mainMenuGUI();
+            }
+        });
 
         //initializing GUI
         initGUI(administratorScreen);
