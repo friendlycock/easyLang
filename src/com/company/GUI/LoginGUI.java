@@ -1,7 +1,6 @@
 package com.company.GUI;
 
 import com.company.logger.ActivityTracker;
-import com.company.logger.LoggerHelper;
 import com.company.logger.LoginTracker;
 import com.company.database.User;
 
@@ -171,8 +170,6 @@ public class LoginGUI extends JFrame {
                     if (user.getPassword() != null && user.getPassword().equals(enterPasswordEditText.getText())) {
                         // successful login
                         LoginTracker.setCurrentUser(user);
-                        String log = user.getUsername() + " successfully logged in.";
-                        LoggerHelper.log(log);
                         ActivityTracker.userLogin();
                         loginGUI.dispose();
                         if (!adminLogin) {

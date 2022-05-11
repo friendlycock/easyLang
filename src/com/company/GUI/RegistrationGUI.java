@@ -1,7 +1,6 @@
 package com.company.GUI;
 
 import com.company.logger.ActivityTracker;
-import com.company.logger.LoggerHelper;
 import com.company.logger.LoginTracker;
 import com.company.database.User;
 
@@ -169,8 +168,6 @@ public class RegistrationGUI extends JFrame {
                     newUser.setUsername(createUsernameEditText.getText());
                     UserDAO.getInstance().insertUpdateUser(newUser);
                     LoginTracker.setCurrentUser(newUser);
-                    String log = newUser.getUsername() + " created account";
-                    LoggerHelper.log(log);
                     ActivityTracker.userRegister();
 
                     registrationGUI.dispose();

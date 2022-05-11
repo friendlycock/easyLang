@@ -2,7 +2,6 @@ package com.company.GUI;
 
 import com.company.Main;
 
-import com.company.logger.LoggerHelper;
 import com.company.logger.LoginTracker;
 import com.company.database.User;
 import com.company.database.UserDAO;
@@ -98,7 +97,6 @@ public class PreferencesGUI extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 //User.setLangLevel, setUserLang, setPracticeLang
                 User currentUser = LoginTracker.getCurrentUser();
-                LoggerHelper.log(currentUser.getUsername() + " changed his preferences.");
                 currentUser.setUserPracticeLanguage((String) practiceLangChoiceBox.getSelectedItem());
                 currentUser.setUserLevel((String) langLevelBox.getSelectedItem());
                 currentUser.setUserLanguage((String) langChoiceBox.getSelectedItem());
