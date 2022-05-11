@@ -31,6 +31,7 @@ public class SubContextTopicsGUI {
                 public void mouseClicked(MouseEvent e) {
                     int topicId = usedSubContexts.indexOf(subContext);
                     Topic chosenTopic = topicsForUserLevel.get(topicId);
+                    LoginTracker.getCurrentUser().addAccessedTopic(chosenTopic.getId());
                     //RoleplayGUI.start(chosenTopic)
                 }
             });

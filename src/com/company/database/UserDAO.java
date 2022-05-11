@@ -36,39 +36,13 @@ public class UserDAO {
                 User user = getUserFromResultSet(resultSet);
                 users.add(user);
             }
+            resultSet.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         return users;
     }
-
-    public boolean checkUserExistence(String username, String email) { //NEED TO TEST
-        try {
-            Statement statement = connection.createStatement();
-            String SQL = String.format("SELECT * FROM Users WHERE username = '%s'", username);
-            String SQL2 = String.format("SELECT * FROM Users WHERE email = '%s'", email);
-            ResultSet resultSet = statement.executeQuery(SQL);
-            ResultSet resultSet2 = statement.executeQuery(SQL2);
-            if (resultSet != null || resultSet2 != null) {
-                return false;
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return true;
-    }
-
-//    public static void main(String[] args) {
-//        UserDAO dao = new UserDAO();
-//        User user1 = new User("krampus", "krampus1337@gmail.com", "password123",
-//                "A", "English", "German");
-//        User user2 = new User("krampus1", "krampus1338@gmail.com", "password123",
-//                "A", "English", "German");
-//        dao.insertUpdateUser(user1);
-//        dao.insertUpdateUser(user2);
-//        System.out.println(dao.getUserByEmail("nonexistemail"));
-//    }
 
     public User getUserByEmail(String email) {
         User user = new User();
@@ -80,6 +54,7 @@ public class UserDAO {
             ResultSet resultSet = statement.executeQuery();
 
             user = getUserFromResultSet(resultSet);
+            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -89,7 +64,7 @@ public class UserDAO {
 
     public void insertUpdateUser(User user) {
         try{
-            String SQL = "INSERT OR REPLACE INTO Users VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT OR REPLACE INTO Users VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             StringBuilder activities = new StringBuilder();
             for (String record: user.getUserActivity()) {
@@ -106,6 +81,9 @@ public class UserDAO {
             statement.setString(7, user.getUserPracticeLanguage());
             statement.setBoolean(8, user.isAdmin());
             statement.setString(9, activities.toString());
+            statement.setString(10, user.getAccessedTopics());
+            statement.setString(11, user.getCompletedTopics());
+
             statement.executeUpdate();
 
 
@@ -125,6 +103,8 @@ public class UserDAO {
         user.setUserLanguage(resultSet.getString("language"));
         user.setUserPracticeLanguage(resultSet.getString("practiceLanguage"));
         user.setAdmin(resultSet.getBoolean("isAdmin"));
+        user.setAccessedTopics(resultSet.getString("accessed_topics"));
+        user.setCompletedTopics(resultSet.getString("completed_topics"));
 
         String[] activities = resultSet.getString("activity").split("\n");
         ArrayList<String> activityList = new ArrayList<>(Arrays.asList(activities));

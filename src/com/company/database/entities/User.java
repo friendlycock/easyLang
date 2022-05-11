@@ -18,6 +18,8 @@ public class User {
     private String userPracticeLanguage;
     private boolean isAdmin;
     private ArrayList<String> userActivity = new ArrayList<>();
+    private String accessedTopics = "";
+    private String completedTopics = "";
 
     public User(String username, String email, String password, String userLevel, String userLanguage, String userPracticeLanguage) {
         this.id = newId;
@@ -141,12 +143,81 @@ public class User {
         return matcher.matches();
     }
 
+    public void addAccessedTopic(int topicId) {
+        accessedTopics += topicId + " ";
+    }
+
+    public void addCompletedTopic(int topicId) {
+        completedTopics += topicId + " ";
+    }
+
+    public String getAccessedTopics() {
+        return accessedTopics;
+    }
+
+    public int[] getAccessedTopicsCount() {
+        int[] resultArray = new int[63];
+        String[] topics = accessedTopics.split(" ");
+
+        for (String topic : topics) {
+            resultArray[Integer.parseInt(topic)] += 1;
+        }
+
+        return resultArray;
+    }
+
+    public int[] getCompletedTopicsCount() {
+        int[] resultArray = new int[63];
+        String[] topics = completedTopics.split(" ");
+
+        for (String topic : topics) {
+            resultArray[Integer.parseInt(topic)] += 1;
+        }
+
+        return resultArray;
+    }
+
+    public String getCompletedTopics() {
+        return completedTopics;
+    }
+
+    public void setAccessedTopics(String accessedTopics) {
+        this.accessedTopics = accessedTopics;
+    }
+
+    public void setCompletedTopics(String completedTopics) {
+        this.completedTopics = completedTopics;
+    }
+
     @Override
     public String toString() {
         StringBuilder activities = new StringBuilder();
         for (String activity: userActivity) {
             activities.append(activity).append("<br>");
         }
+
+        StringBuilder accessedTopic = new StringBuilder();
+        if (!accessedTopics.contains("none")) {
+            int[] accessedTopicCount = getAccessedTopicsCount();
+
+            for (int i = 0; i < accessedTopicCount.length; i++) {
+                if (accessedTopicCount[i] != 0 ) {
+                    accessedTopic.append(String.format("Topic %d: %d times<br>",i, accessedTopicCount[i]));
+                }
+            }
+        }
+
+        StringBuilder completedTopic = new StringBuilder();
+        if (!completedTopics.contains("none")) {
+            int[] completedTopicCount = getAccessedTopicsCount();
+
+            for (int i = 0; i < completedTopicCount.length; i++) {
+                if (completedTopicCount[i] != 0 ) {
+                    completedTopic.append(String.format("Topic %d: %d times<br>",i, completedTopicCount[i]));
+                }
+            }
+        }
+
         return "id=" + id + "<br>" +
                 "username= " + username + "<br>" +
                 "email=" + email + "<br>" +
@@ -155,6 +226,8 @@ public class User {
                 "userLanguage= " + userLanguage + "<br>" +
                 "userPracticeLanguage= " + userPracticeLanguage + "<br>" +
                 "isAdmin= " + isAdmin + "<br>" +
-                "userActivity= <br>" + activities.toString();
+                "Accessed topics: <br>" + accessedTopic.toString() +
+                "Completed topics: <br>" + completedTopic.toString() +
+                "User's activity: <br>" + activities.toString();
     }
 }

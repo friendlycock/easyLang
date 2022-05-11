@@ -35,6 +35,7 @@ public class GrammarGUI {
                 public void mouseClicked(MouseEvent e) {
                     int topicId = usedGrammar.indexOf(finalGrammar);
                     Topic chosenTopic = topicsForUserLevel.get(topicId);
+                    LoginTracker.getCurrentUser().addAccessedTopic(chosenTopic.getId());
                     //RoleplayGUI.start(chosenTopic)
                 }
             });

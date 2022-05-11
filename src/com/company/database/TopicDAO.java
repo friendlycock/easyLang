@@ -32,6 +32,7 @@ public class TopicDAO {
             statement.setString(2, LoginTracker.getCurrentUser().getUserLevel());
             ResultSet resultSet = statement.executeQuery();
             topics = getTopicsFromResultSet(resultSet);
+            resultSet.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -49,6 +50,7 @@ public class TopicDAO {
             statement.setString(2, LoginTracker.getCurrentUser().getUserLevel());
             ResultSet resultSet = statement.executeQuery();
             topics = getTopicsFromResultSet(resultSet);
+            resultSet.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -66,6 +68,7 @@ public class TopicDAO {
             statement.setString(2, LoginTracker.getCurrentUser().getUserLevel());
             ResultSet resultSet = statement.executeQuery();
             topics = getTopicsFromResultSet(resultSet);
+            resultSet.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -82,6 +85,7 @@ public class TopicDAO {
             statement.setString(1, level);
             ResultSet resultSet = statement.executeQuery();
             topics = getTopicsFromResultSet(resultSet);
+            resultSet.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -115,11 +119,31 @@ public class TopicDAO {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             topic = getTopicsFromResultSet(resultSet).get(0);
+            resultSet.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         return topic;
+    }
+
+    public static ArrayList<String> getTopicContextAndSubcontext(int topicId) {
+        ArrayList<String> contextSubcontext = new ArrayList<>();
+
+        try {
+            String SQL = "SELECT context, subContext FROM Topics WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(SQL);
+            statement.setInt(1, topicId);
+            ResultSet resultSet = statement.executeQuery();
+            contextSubcontext.add(resultSet.getString("context"));
+            contextSubcontext.add(resultSet.getString("subContext"));
+            resultSet.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+        return contextSubcontext;
     }
 
 }

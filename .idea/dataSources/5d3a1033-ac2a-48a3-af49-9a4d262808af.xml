@@ -1306,114 +1306,129 @@
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="481" parent="165" name="id">
+    <foreign-key id="481" parent="164">
+      <ColNames>id</ColNames>
+      <RefTableName>Topics</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="482" parent="165" name="id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="482" parent="165" name="context">
+    <column id="483" parent="165" name="context">
       <Position>2</Position>
       <DataType>VARCHAR(25)|0s</DataType>
     </column>
-    <column id="483" parent="165" name="subContext">
+    <column id="484" parent="165" name="subContext">
       <Position>3</Position>
       <DataType>VARCHAR(25)|0s</DataType>
     </column>
-    <column id="484" parent="165" name="grammar">
+    <column id="485" parent="165" name="grammar">
       <Position>4</Position>
       <DataType>VARCHAR(25)|0s</DataType>
     </column>
-    <column id="485" parent="165" name="keyVocab">
+    <column id="486" parent="165" name="keyVocab">
       <Position>5</Position>
       <DataType>VARCHAR(70)|0s</DataType>
     </column>
-    <column id="486" parent="165" name="level">
+    <column id="487" parent="165" name="level">
       <Position>6</Position>
       <DataType>VARCHAR(2)|0s</DataType>
     </column>
-    <key id="487" parent="165">
+    <key id="488" parent="165">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="488" parent="166" name="user_id">
+    <column id="489" parent="166" name="user_id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="489" parent="166" name="username">
+    <column id="490" parent="166" name="username">
       <Position>2</Position>
       <DataType>VARCHAR(25)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="490" parent="166" name="email">
+    <column id="491" parent="166" name="email">
       <Position>3</Position>
       <DataType>VARCHAR(25)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="491" parent="166" name="password">
+    <column id="492" parent="166" name="password">
       <Position>4</Position>
       <DataType>VARCHAR(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="492" parent="166" name="language">
+    <column id="493" parent="166" name="language">
       <Position>5</Position>
       <DataType>VARCHAR(25)|0s</DataType>
     </column>
-    <column id="493" parent="166" name="level">
+    <column id="494" parent="166" name="level">
       <Position>6</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="494" parent="166" name="practiceLanguage">
+    <column id="495" parent="166" name="practiceLanguage">
       <Position>7</Position>
       <DataType>VARCHAR(25)|0s</DataType>
     </column>
-    <column id="495" parent="166" name="isAdmin">
+    <column id="496" parent="166" name="isAdmin">
       <Position>8</Position>
       <DataType>BOOLEAN|0s</DataType>
     </column>
-    <column id="496" parent="166" name="activity">
+    <column id="497" parent="166" name="activity">
       <Position>9</Position>
       <DataType>TEXT|0s</DataType>
     </column>
-    <index id="497" parent="166" name="sqlite_autoindex_Users_1">
+    <column id="498" parent="166" name="accessed_topics">
+      <Position>10</Position>
+      <DataType>TEXT|0s</DataType>
+      <DefaultExpression>&apos;none&apos;</DefaultExpression>
+    </column>
+    <column id="499" parent="166" name="completed_topics">
+      <Position>11</Position>
+      <DataType>TEXT|0s</DataType>
+      <DefaultExpression>&apos;none&apos;</DefaultExpression>
+    </column>
+    <index id="500" parent="166" name="sqlite_autoindex_Users_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>username</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="498" parent="166" name="sqlite_autoindex_Users_2">
+    <index id="501" parent="166" name="sqlite_autoindex_Users_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>email</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="499" parent="166">
+    <key id="502" parent="166">
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="500" parent="166">
+    <key id="503" parent="166">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_Users_1</UnderlyingIndexName>
     </key>
-    <key id="501" parent="166">
+    <key id="504" parent="166">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_Users_2</UnderlyingIndexName>
     </key>
-    <column id="502" parent="167" name="type">
+    <column id="505" parent="167" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="503" parent="167" name="name">
+    <column id="506" parent="167" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="504" parent="167" name="tbl_name">
+    <column id="507" parent="167" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="505" parent="167" name="rootpage">
+    <column id="508" parent="167" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="506" parent="167" name="sql">
+    <column id="509" parent="167" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>
