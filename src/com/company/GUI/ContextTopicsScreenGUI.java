@@ -47,16 +47,12 @@ public class ContextTopicsScreenGUI extends JFrame {
         panel.setBackground(new Color(30,152,215, 0));
         panel.setBorder(null);
         JScrollPane scrollPane = new JScrollPane(panel);
-        scrollPane.setBorder(null);
-        scrollPane.setOpaque(false);
-        scrollPane.getViewport().setOpaque(false);
         scrollPane.getVerticalScrollBar().setUnitIncrement(1);
         scrollPane.getViewport().setScrollMode(JViewport.SIMPLE_SCROLL_MODE);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBounds(25, 117, 314, 460);
         JPanel contentPane = new JPanel(null);
-        //contentPane.setPreferredSize(new Dimension(500, 400));
         contentPane.add(scrollPane);
         contextTopicsScreen.setContentPane(contentPane);
         contextTopicsScreen.pack();
