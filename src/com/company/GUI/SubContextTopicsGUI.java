@@ -30,7 +30,7 @@ public class SubContextTopicsGUI {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     int topicId = usedSubContexts.indexOf(subContext);
-                    Topic chosenTopic = TopicDAO.getTopicById(topicId);
+                    Topic chosenTopic = topicsForUserLevel.get(topicId);
                     //RoleplayGUI.start(chosenTopic)
                 }
             });

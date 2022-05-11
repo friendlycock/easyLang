@@ -34,7 +34,7 @@ public class GrammarGUI {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     int topicId = usedGrammar.indexOf(finalGrammar);
-                    Topic chosenTopic = TopicDAO.getTopicById(topicId);
+                    Topic chosenTopic = topicsForUserLevel.get(topicId);
                     //RoleplayGUI.start(chosenTopic)
                 }
             });

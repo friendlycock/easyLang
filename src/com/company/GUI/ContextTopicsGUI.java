@@ -34,7 +34,7 @@ public class ContextTopicsGUI extends JFrame {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     int topicId = usedContexts.indexOf(finalContext);
-                    Topic chosenTopic = TopicDAO.getTopicById(topicId);
+                    Topic chosenTopic = topicsForUserLevel.get(topicId);
                     //RoleplayGUI.start(chosenTopic)
                 }
             });
