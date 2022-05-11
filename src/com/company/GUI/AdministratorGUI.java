@@ -1,13 +1,19 @@
 package com.company.GUI;
 
+import com.company.database.User;
+import com.company.database.UserDAO;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import static com.company.GUI.GUI.*;
+import static javax.swing.JOptionPane.showMessageDialog;
 
-public class AdministratorGUI {
+public class AdministratorGUI extends JFrame{
     public static void startAdministrator() {
         JFrame administratorScreen = new JFrame();
         JTextField userSearch = new JTextField();
@@ -36,6 +42,18 @@ public class AdministratorGUI {
             {
                 administratorScreen.dispose();
                 GUI.mainMenuGUI();
+            }
+        });
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UserDAO dao = UserDAO.getInstance();
+                User user = dao.getUserByEmail(userSearch.getText());
+                if (user.getUsername() == null) {
+                    showMessageDialog(null, "User not found");
+                } else {
+                    userPanel.setText(user.toString());
+                }
             }
         });
 
