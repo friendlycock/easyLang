@@ -1,6 +1,7 @@
 package com.company.database;
 
 import com.company.database.entities.Topic;
+import com.company.logger.LoginTracker;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,9 +26,60 @@ public class TopicDAO {
         ArrayList<Topic> topics = new ArrayList<>();
 
         try {
-            String SQL = "SELECT * FROM Topics JOIN Text ON (Topics.id = Text.id) WHERE context = ?";
+            String SQL = "SELECT * FROM Topics JOIN Text ON (Topics.id = Text.id) WHERE context = ? AND level = ?";
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setString(1, context);
+            statement.setString(2, LoginTracker.getCurrentUser().getUserLevel());
+            ResultSet resultSet = statement.executeQuery();
+            topics = getTopicsFromResultSet(resultSet);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return topics;
+    }
+
+    public static ArrayList<Topic> getTopicsBySubContext(String subcontext) {
+        ArrayList<Topic> topics = new ArrayList<>();
+
+        try {
+            String SQL = "SELECT * FROM Topics JOIN Text ON (Topics.id = Text.id) WHERE subContext = ? AND level = ?";
+            PreparedStatement statement = connection.prepareStatement(SQL);
+            statement.setString(1, subcontext);
+            statement.setString(2, LoginTracker.getCurrentUser().getUserLevel());
+            ResultSet resultSet = statement.executeQuery();
+            topics = getTopicsFromResultSet(resultSet);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return topics;
+    }
+
+    public static ArrayList<Topic> getTopicsByGrammar(String grammar) {
+        ArrayList<Topic> topics = new ArrayList<>();
+
+        try {
+            String SQL = "SELECT * FROM Topics JOIN Text ON (Topics.id = Text.id) WHERE grammar = ? AND level = ?";
+            PreparedStatement statement = connection.prepareStatement(SQL);
+            statement.setString(1, grammar);
+            statement.setString(2, LoginTracker.getCurrentUser().getUserLevel());
+            ResultSet resultSet = statement.executeQuery();
+            topics = getTopicsFromResultSet(resultSet);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return topics;
+    }
+
+    public static ArrayList<Topic> getTopicsByLevel(String level) {
+        ArrayList<Topic> topics = new ArrayList<>();
+
+        try {
+            String SQL = "SELECT * FROM Topics JOIN Text ON (Topics.id = Text.id) WHERE level = ?";
+            PreparedStatement statement = connection.prepareStatement(SQL);
+            statement.setString(1, level);
             ResultSet resultSet = statement.executeQuery();
             topics = getTopicsFromResultSet(resultSet);
         } catch (SQLException throwables) {
@@ -55,8 +107,19 @@ public class TopicDAO {
         return topicsList;
     }
 
-    public static void main(String[] args) {
-        getTopicsByContext("Making Appointments").forEach(System.out::println);
+    public static Topic getTopicById(int id) {
+        Topic topic = new Topic();
+        try {
+            String SQL = "SELECT * FROM Topics JOIN Text ON (Topics.id = Text.id) WHERE grammar = ? AND level = ?";
+            PreparedStatement statement = connection.prepareStatement(SQL);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            topic = getTopicsFromResultSet(resultSet).get(0);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return topic;
     }
 
 }
