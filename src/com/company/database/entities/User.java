@@ -221,7 +221,6 @@ public class User {
         return "id=" + id + "<br>" +
                 "username= " + username + "<br>" +
                 "email=" + email + "<br>" +
-                "password= " + password + "<br>" +
                 "userLevel= " + userLevel + "<br>" +
                 "userLanguage= " + userLanguage + "<br>" +
                 "userPracticeLanguage= " + userPracticeLanguage + "<br>" +
