@@ -1,6 +1,7 @@
 package com.company.database;
 
 import com.company.database.entities.User;
+import com.company.logger.LoginTracker;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -111,5 +112,34 @@ public class UserDAO {
         user.setUserActivity(activityList);
 
         return user;
+    }
+
+    public String getUserSalt(int id) {
+        String SQL = "SELECT salt from Salt WHERE salt_id = ?";
+        String salt = "";
+        try {
+            PreparedStatement statement = connection.prepareStatement(SQL);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            salt = resultSet.getString("salt");
+            resultSet.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return salt;
+    }
+
+    public void insertUpdateSalt(String salt) {
+        String SQL = "INSERT OR REPLACE INTO Salt VALUES(?, ?)";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(SQL);
+            statement.setInt(1, LoginTracker.getCurrentUser().getId());
+            statement.setString(2, salt);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

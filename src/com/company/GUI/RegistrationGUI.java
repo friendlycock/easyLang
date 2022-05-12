@@ -1,5 +1,6 @@
 package com.company.GUI;
 
+import com.company.PasswordEncoder;
 import com.company.logger.ActivityTracker;
 import com.company.logger.LoginTracker;
 import com.company.database.entities.User;
@@ -162,12 +163,18 @@ public class RegistrationGUI extends JFrame {
                     showMessageDialog(null, "Email is already used");
                 }
                 else {
+                    UserDAO dao = UserDAO.getInstance();
+
+                    String salt = PasswordEncoder.getSalt();
+                    String password = PasswordEncoder.getSHA512SecurePassword(createPasswordEditText.getText(), salt);
+
                     User newUser = new User();
                     newUser.setEmail(createEmailEditText.getText());
-                    newUser.setPassword(createPasswordEditText.getText());
+                    newUser.setPassword(password);
                     newUser.setUsername(createUsernameEditText.getText());
-                    UserDAO.getInstance().insertUpdateUser(newUser);
+                    dao.insertUpdateUser(newUser);
                     LoginTracker.setCurrentUser(newUser);
+                    dao.insertUpdateSalt(salt);
                     ActivityTracker.userRegister();
 
                     registrationGUI.dispose();
