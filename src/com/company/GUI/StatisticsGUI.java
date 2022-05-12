@@ -1,7 +1,12 @@
 package com.company.GUI;
 
+import com.company.database.TopicDAO;
+import com.company.database.entities.User;
+import com.company.logger.LoginTracker;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 import static com.company.GUI.GUI.addButton;
 import static com.company.GUI.GUI.initGUI;
@@ -30,23 +35,51 @@ public class StatisticsGUI extends JFrame {
         statisticsScreen.setContentPane(contentPane);
         statisticsScreen.pack();
 
-        //"Choose topic you want to practise" TextView
-        JLabel chooseTopicTextView = new JLabel();
-        chooseTopicTextView.setFont(new Font("Comfortaa", Font.PLAIN, 18));
-        chooseTopicTextView.setForeground(Color.black);
-        chooseTopicTextView.setText("Statistics");
-        chooseTopicTextView.setHorizontalAlignment(SwingConstants.LEFT);
-        chooseTopicTextView.setVerticalAlignment(SwingConstants.CENTER);
-        chooseTopicTextView.setBounds(18, 41, 310, 27);
-        statisticsScreen.add(chooseTopicTextView);
+        label.setText("<html>" + getUserStatistic() +"</html>");
 
-        //Purple line under "Choose topic you want to practise"
+
+        JLabel statisticsTextView = new JLabel();
+        statisticsTextView.setFont(new Font("Comfortaa", Font.PLAIN, 18));
+        statisticsTextView.setForeground(Color.black);
+        statisticsTextView.setText("Statistics");
+        statisticsTextView.setHorizontalAlignment(SwingConstants.LEFT);
+        statisticsTextView.setVerticalAlignment(SwingConstants.CENTER);
+        statisticsTextView.setBounds(18, 41, 310, 27);
+        statisticsScreen.add(statisticsTextView);
+
+
+
         ImageIcon purpleLine = new ImageIcon("src/resources/purpleLineTopic.png");
-        JLabel chooseTopicLine = new JLabel(purpleLine);
-        chooseTopicLine.setBounds(0, 76, 105, 3);
-        statisticsScreen.add(chooseTopicLine);
+        JLabel statisticsLine = new JLabel(purpleLine);
+        statisticsLine.setBounds(0, 76, 105, 3);
+        statisticsScreen.add(statisticsLine);
 
         //initializing GUI
         initGUI(statisticsScreen);
+    }
+
+    private static String getUserStatistic() {
+        StringBuilder result = new StringBuilder("Topics you accessed:<br>");
+        User user = LoginTracker.getCurrentUser();
+        int[] accessedTopics = user.getAccessedTopicsCount();
+        int[] completedTopics = user.getCompletedTopicsCount();
+
+        for (int i = 0; i < accessedTopics.length; i++) {
+            if(accessedTopics[i] == 0) continue;
+            result.append("Topic: ");
+            ArrayList<String> context = TopicDAO.getTopicContextAndSubcontext(i);
+            result.append(context.get(0)).append("<br>").append(context.get(1)).append("<br>");
+            result.append("Accessed: ").append(accessedTopics[i]).append(" ").append("times").append("<br><br>");
+        }
+        result.append("Completed topics:<br>");
+        for (int i = 0; i < completedTopics.length; i++) {
+            if(completedTopics[i] == 0) continue;
+            result.append("Topic: ");
+            ArrayList<String> context = TopicDAO.getTopicContextAndSubcontext(i);
+            result.append(context.get(0)).append("<br>").append(context.get(1)).append("<br>");
+            result.append("Completed: ").append(completedTopics[i]).append(" ").append("times").append("<br><br>");
+        }
+
+        return result.toString();
     }
 }

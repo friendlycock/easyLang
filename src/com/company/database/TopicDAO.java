@@ -22,59 +22,6 @@ public class TopicDAO {
 
     }
 
-    public static ArrayList<Topic> getTopicsByContext(String context) {
-        ArrayList<Topic> topics = new ArrayList<>();
-
-        try {
-            String SQL = "SELECT * FROM Topics JOIN Text ON (Topics.id = Text.id) WHERE context = ? AND level = ?";
-            PreparedStatement statement = connection.prepareStatement(SQL);
-            statement.setString(1, context);
-            statement.setString(2, LoginTracker.getCurrentUser().getUserLevel());
-            ResultSet resultSet = statement.executeQuery();
-            topics = getTopicsFromResultSet(resultSet);
-            resultSet.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return topics;
-    }
-
-    public static ArrayList<Topic> getTopicsBySubContext(String subcontext) {
-        ArrayList<Topic> topics = new ArrayList<>();
-
-        try {
-            String SQL = "SELECT * FROM Topics JOIN Text ON (Topics.id = Text.id) WHERE subContext = ? AND level = ?";
-            PreparedStatement statement = connection.prepareStatement(SQL);
-            statement.setString(1, subcontext);
-            statement.setString(2, LoginTracker.getCurrentUser().getUserLevel());
-            ResultSet resultSet = statement.executeQuery();
-            topics = getTopicsFromResultSet(resultSet);
-            resultSet.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return topics;
-    }
-
-    public static ArrayList<Topic> getTopicsByGrammar(String grammar) {
-        ArrayList<Topic> topics = new ArrayList<>();
-
-        try {
-            String SQL = "SELECT * FROM Topics JOIN Text ON (Topics.id = Text.id) WHERE grammar = ? AND level = ?";
-            PreparedStatement statement = connection.prepareStatement(SQL);
-            statement.setString(1, grammar);
-            statement.setString(2, LoginTracker.getCurrentUser().getUserLevel());
-            ResultSet resultSet = statement.executeQuery();
-            topics = getTopicsFromResultSet(resultSet);
-            resultSet.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return topics;
-    }
 
     public static ArrayList<Topic> getTopicsByLevel(String level) {
         ArrayList<Topic> topics = new ArrayList<>();

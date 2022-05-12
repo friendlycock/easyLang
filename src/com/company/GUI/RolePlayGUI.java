@@ -25,7 +25,7 @@ public class RolePlayGUI extends JFrame {
     public static void startRolePlay(Topic topic) {
         JFrame rolePlayScreen = new JFrame();
         User currentUser = LoginTracker.getCurrentUser();
-        currentUser.addAccessedTopic(topic.getId());
+
         //"A button" Button
         ImageIcon buttonAImage = new ImageIcon("src/resources/buttonA.png");
         JLabel buttonA = new JLabel(buttonAImage);

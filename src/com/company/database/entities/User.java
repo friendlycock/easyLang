@@ -156,6 +156,7 @@ public class User {
     }
 
     public int[] getAccessedTopicsCount() {
+        if(accessedTopics.equals("")) return new int[63];
         int[] resultArray = new int[63];
         String[] topics = accessedTopics.split(" ");
 
@@ -167,6 +168,7 @@ public class User {
     }
 
     public int[] getCompletedTopicsCount() {
+        if(accessedTopics.equals("")) return new int[63];
         int[] resultArray = new int[63];
         String[] topics = completedTopics.split(" ");
 
@@ -197,7 +199,7 @@ public class User {
         }
 
         StringBuilder accessedTopic = new StringBuilder();
-        if (!accessedTopics.contains("none")) {
+        if (!accessedTopics.equals("")) {
             int[] accessedTopicCount = getAccessedTopicsCount();
 
             for (int i = 0; i < accessedTopicCount.length; i++) {
@@ -208,7 +210,7 @@ public class User {
         }
 
         StringBuilder completedTopic = new StringBuilder();
-        if (!completedTopics.contains("none")) {
+        if (!completedTopics.equals("")) {
             int[] completedTopicCount = getAccessedTopicsCount();
 
             for (int i = 0; i < completedTopicCount.length; i++) {
