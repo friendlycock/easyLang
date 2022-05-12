@@ -1,3 +1,5 @@
+//Authors: Pavels Kuznecovs
+
 package com.company.GUI;
 
 import com.company.database.DatabaseConnection;

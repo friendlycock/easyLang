@@ -1,3 +1,5 @@
+//Author: Bohdan Rudenko
+
 package com.company.logger;
 
 import com.company.database.entities.User;

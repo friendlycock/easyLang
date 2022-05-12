@@ -1,3 +1,5 @@
+//Authors: Pavels Kuznecovs, Bohdan Rudenko
+
 package com.company.GUI;
 
 import com.company.database.TopicDAO;

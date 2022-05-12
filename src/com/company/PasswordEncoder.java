@@ -1,3 +1,5 @@
+//Author: Bohdan Rudenko
+
 package com.company;
 
 import com.company.database.UserDAO;

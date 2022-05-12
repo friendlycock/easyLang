@@ -1,3 +1,5 @@
+//Author: Bohdan Rudenko
+
 package com.company.database;
 
 import java.sql.Connection;

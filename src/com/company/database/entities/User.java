@@ -1,3 +1,5 @@
+//Authors: Bohdan Rudenko, Pavels Kuznecovs
+
 package com.company.database.entities;
 
 import java.util.ArrayList;

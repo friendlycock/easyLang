@@ -1,3 +1,5 @@
+//Author: Pavels Kuznecovs
+
 package com.company.GUI;
 
 import javax.swing.*;
