@@ -1,5 +1,6 @@
 package com.company.GUI;
 
+import com.company.PasswordEncoder;
 import com.company.logger.ActivityTracker;
 import com.company.logger.LoginTracker;
 import com.company.database.entities.User;
@@ -167,7 +168,12 @@ public class LoginGUI extends JFrame {
                             "and its length should be from 8 to 20 characters");
                 }
                 else {
-                    if (user.getPassword() != null && user.getPassword().equals(enterPasswordEditText.getText())) {
+                    UserDAO dao = UserDAO.getInstance();
+
+                    String salt = dao.getUserSalt(user.getId());
+                    String password = enterPasswordEditText.getText();
+                    String enteredPassword = PasswordEncoder.getSHA512SecurePassword(password, salt);
+                    if (user.getPassword() != null && user.getPassword().equals(enteredPassword)) {
                         // successful login
                         LoginTracker.setCurrentUser(user);
                         ActivityTracker.userLogin();
