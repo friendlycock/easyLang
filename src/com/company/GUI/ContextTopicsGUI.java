@@ -33,10 +33,11 @@ public class ContextTopicsGUI extends JFrame {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    contextTopicsScreen.dispose();
                     int topicId = usedContexts.indexOf(finalContext);
                     Topic chosenTopic = topicsForUserLevel.get(topicId);
                     LoginTracker.getCurrentUser().addAccessedTopic(chosenTopic.getId());
-                    //RoleplayGUI.start(chosenTopic)
+                    RolePlayGUI.startRolePlay(chosenTopic);
                 }
             });
             addButton(panel, button);
