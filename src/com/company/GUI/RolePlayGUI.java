@@ -1,5 +1,6 @@
 package com.company.GUI;
 
+import com.company.Main;
 import com.company.database.UserDAO;
 import com.company.database.entities.Topic;
 import com.company.database.entities.User;
@@ -45,8 +46,22 @@ public class RolePlayGUI extends JFrame {
         rolePlayPanel.setFont(new Font("Comfortaa", Font.PLAIN, 14));
         rolePlayPanel.setBorder(new EmptyBorder(10,5,0,0));//top,left,b
         JScrollPane scroller = new JScrollPane(rolePlayPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroller.setBounds(27, 124, 310, 430);
+        scroller.setBounds(27, 124, 310, 330);
         rolePlayScreen.add(scroller);
+
+        //KeyWord panel
+        JLabel keyWordPanel = new JLabel();
+        keyWordPanel.setHorizontalAlignment(SwingConstants.LEFT);
+        keyWordPanel.setVerticalAlignment(SwingConstants.TOP);
+        keyWordPanel.setFont(new Font("Comfortaa", Font.PLAIN, 14));
+        keyWordPanel.setBorder(new EmptyBorder(10,5,0,0));//top,left,b
+        JScrollPane scroller2 = new JScrollPane(keyWordPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroller2.setBounds(27, 460, 310, 80);
+        rolePlayScreen.add(scroller2);
+
+        if (Main.keyVocab) {
+            keyWordPanel.setText(String.format("<html><div WIDTH=%d>%s</div></html>", 300, topic.getKeyVocab()));
+        }
 
         String[] roleplay = topic.getText().split("\n");
         ArrayList<String> arrayA = new ArrayList<String>();
