@@ -36,7 +36,8 @@ public class GrammarGUI {
                     int topicId = usedGrammar.indexOf(finalGrammar);
                     Topic chosenTopic = topicsForUserLevel.get(topicId);
                     LoginTracker.getCurrentUser().addAccessedTopic(chosenTopic.getId());
-                    //RoleplayGUI.start(chosenTopic)
+                    grammarTopicsScreen.dispose();
+                    RolePlayGUI.startRolePlay(chosenTopic);
                 }
             });
             addButton(panel, button);
